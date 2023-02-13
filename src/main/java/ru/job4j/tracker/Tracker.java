@@ -46,8 +46,7 @@ public class Tracker {
                 counter++;
             }
         }
-        tempArray = Arrays.copyOf(tempArray, counter);
-        return tempArray;
+        return Arrays.copyOf(tempArray, counter);
     }
 
     private int indexOf(int id) {

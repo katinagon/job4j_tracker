@@ -41,7 +41,6 @@ public class License {
         this.created = created;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -7,6 +7,16 @@ public class Tracker {
     private int ids = 1;
     private int size = 0;
 
+    public boolean delete(int id) {
+        if (indexOf(id) != -1) {
+            System.arraycopy(items, indexOf(id) + 1, items, indexOf(id), size - indexOf(id) - 1);
+            items[size - 1] = null;
+            size--;
+            return true;
+        }
+        return false;
+    }
+
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
         if (indexOf(id) != -1) {

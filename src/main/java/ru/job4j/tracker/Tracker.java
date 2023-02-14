@@ -8,8 +8,9 @@ public class Tracker {
     private int size = 0;
 
     public boolean delete(int id) {
-        if (indexOf(id) != -1) {
-            System.arraycopy(items, indexOf(id) + 1, items, indexOf(id), size - indexOf(id) - 1);
+        int index = indexOf(id);
+        if (index != -1) {
+            System.arraycopy(items, index + 1, items, index, size - index - 1);
             items[size - 1] = null;
             size--;
             return true;

@@ -51,8 +51,8 @@ public class PasswordValidator {
             throw new IllegalArgumentException("Password should contain at least one lowercase letter");
         }
         if (isForbidden) {
-            throw new IllegalArgumentException("Password shouldn't contain substrings: qwerty, 12345, " +
-                    "password, admin, user");
+            throw new IllegalArgumentException("Password shouldn't contain substrings: qwerty, 12345, "
+                    + "password, admin, user");
         }
         if (!isSpecSymbol) {
             throw new IllegalArgumentException("Password should contain at least one special symbol");

@@ -2,15 +2,12 @@ package ru.job4j.early;
 
 public class PasswordValidator {
 
-    public static boolean isDigit = false;
-    public static boolean isUpper = false;
-    public static boolean isLower = false;
-    public static boolean isForbidden = false;
-    public static boolean isSpecSymbol = false;
-    public static char[] specSymbols = {'!', '@', '#', '$', '%', '^', '&', '+', '*', '_', '='};
-    public static String[] forbiddenWords = {"qwerty", "12345", "password", "admin", "user"};
-
     public static String validate(String password) {
+        boolean isDigit = false;
+        boolean isUpper = false;
+        boolean isLower = false;
+        boolean isSpecSymbol = false;
+        String[] forbiddenWords = {"qwerty", "12345", "password", "admin", "user"};
         if (password == null) {
             throw new IllegalArgumentException("Password can't be null");
         }
@@ -28,17 +25,14 @@ public class PasswordValidator {
             if (Character.isDigit(symbol)) {
                 isDigit = true;
             }
+            if (!Character.isDigit(symbol) && !Character.isLetter(symbol)) {
+                isSpecSymbol = true;
+            }
         }
         for (String word : forbiddenWords) {
             if (password.toLowerCase().contains(word)) {
-                isForbidden = true;
-                break;
-            }
-        }
-        for (char symbol : specSymbols) {
-            if (password.contains(symbol + "")) {
-                isSpecSymbol = true;
-                break;
+                throw new IllegalArgumentException("Password shouldn't contain substrings: qwerty, 12345, "
+                        + "password, admin, user");
             }
         }
         if (!isDigit) {
@@ -49,10 +43,6 @@ public class PasswordValidator {
         }
         if (!isLower) {
             throw new IllegalArgumentException("Password should contain at least one lowercase letter");
-        }
-        if (isForbidden) {
-            throw new IllegalArgumentException("Password shouldn't contain substrings: qwerty, 12345, "
-                    + "password, admin, user");
         }
         if (!isSpecSymbol) {
             throw new IllegalArgumentException("Password should contain at least one special symbol");

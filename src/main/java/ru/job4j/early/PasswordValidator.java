@@ -28,6 +28,9 @@ public class PasswordValidator {
             if (!Character.isDigit(symbol) && !Character.isLetter(symbol)) {
                 isSpecSymbol = true;
             }
+            if (isUpper && isLower && isDigit && isSpecSymbol) {
+                break;
+            }
         }
         for (String word : forbiddenWords) {
             if (password.toLowerCase().contains(word)) {
